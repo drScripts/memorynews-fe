@@ -7,16 +7,18 @@ import { Textarea } from './ui/textarea';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
+
 
 interface NewsFormProps {
     newsItem?: News;
-    onSuccess?: () => void;
 }
 
-const NewsForm: React.FC<NewsFormProps> = ({ newsItem, onSuccess }) => {
+const NewsForm: React.FC<NewsFormProps> = ({ newsItem }) => {
     const { createNews, updateNews } = useNews();
     const [title, setTitle] = useState(newsItem?.title || '');
     const [content, setContent] = useState(newsItem?.content || '');
+    const router = useRouter();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -29,9 +31,8 @@ const NewsForm: React.FC<NewsFormProps> = ({ newsItem, onSuccess }) => {
             toast.success('News created successfully!');
         }
 
-        if (onSuccess) {
-            onSuccess();
-        }
+
+        router.push('/');
     };
 
     return (

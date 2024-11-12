@@ -6,9 +6,8 @@ import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const EditNewsPage: React.FC = () => {
-    const router = useParams();
-    const { id } = router;
-
+    const params = useParams();
+    const { id } = params;
 
     const { fetchNewsById, } = useNews();
     const [newsItem, setNewsItem] = useState(null);

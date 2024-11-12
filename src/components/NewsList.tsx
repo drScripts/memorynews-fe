@@ -18,6 +18,8 @@ const NewsList: React.FC = () => {
     const handleDelete = async (id: number) => {
         await deleteNews(id);
         toast.warning(`News with id ${id} deleted`)
+
+        fetchNews()
     };
 
     return (
